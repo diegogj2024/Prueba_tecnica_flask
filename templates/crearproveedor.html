@@ -17,8 +17,8 @@
             <select name="tipo_doc" id="tipo_doc">
                 <option value="Cedula">Cédula</option>
                 <option value="NIT">NIT</option>
-                <option value="Cedula_Extranjeria">Cédula de Extranjería</option>
-                <option value="NIT_Extranjeria">NIT de Extranjería</option>
+                <option value="Cedula Extranjeria">Cédula de Extranjería</option>
+                <option value="NIT Extranjeria">NIT de Extranjería</option>
             </select><br>
             <label for="numero_doc" class="proveedor">Ingrese el numero del documento</label><br>
             <input type="text" name="numero_doc" id="numero_doc" placeholder="Ingrese el numero de documento" required class="inputs"><br>
@@ -30,11 +30,11 @@
             <input type="text" name="nombre_contacto" id="nombre_contacto" placeholder="Ingrese el nombre del contacto" required class="inputs"><br>
             <label for="celular_contacto" class="proveedor">Ingrese el numero de Celular del contacto</label><br>
             <input type="text" name="celular_contacto" class="inputs"><br>
-            <label for="actividad_economina" class="proveedor">Ingrese la actividad economica</label><br>
-            <input type="number" name="actividad_economina" id="actividad_economina" min="1000" max="9999" class="inputs"><br>
+            <label for="actividad_economica" class="proveedor">Ingrese la actividad economica</label><br>
+            <input type="number" name="actividad_economica" id="actividad_economica" min="1000" max="9999" class="inputs"><br>
             <button type="submit">Guardar</button>
         </form>
-        <a href="{{ url_for('productos') }}"><button>atras</button></a>
+        <a href="{{ url_for('proveedores') }}"><button>atras</button></a>
         
     </div>
 </body>

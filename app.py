@@ -72,9 +72,40 @@ def guardar_proveedor():
     direccion=request.form['direccion']
     nombre_contacto=request.form['nombre_contacto']
     celular_contacto=request.form['celular_contacto']
-    actividad_economica=request.form['actividad_economina']
+    actividad_economica=request.form['actividad_economica']
     aviso=service.guardar_proveedor(tipo_doc,numero_doc,nombre_proveedor,direccion,nombre_contacto,celular_contacto,actividad_economica)
     return render_template('crearproveedor.html',aviso=aviso)
+
+@app.route('/proveedores')
+def proveedores():
+    proveedores=service.obtener_proveedores()
+    return render_template('proveedores.html',proveedores=proveedores)
+
+@app.route('/formulario_editar_proveedor', methods=['POST'])
+def  formulario_editar_proveedor():
+    numero_identificacion=request.form['numero_identificacion']
+    proveedor_editar=service.obtener_editar_proveedor(numero_identificacion)
+    return render_template('actualizarproveedor.html',proveedor=proveedor_editar)
+
+@app.route('/editar_proveedor', methods=['POST'])
+def editar_proveedor():
+    tipo_iden=request.form['tipo_identificacion']
+    numero_iden=request.form['numero_identificacion']
+    nombre_proveedor=request.form['nombre_proveedor']
+    direccion=request.form['direccion']
+    nombre_contacto=request.form['nombre_contacto']
+    celular_contacto=request.form['celular_contacto']
+    actividad_economica=request.form['actividad_economica']
+    aviso, proveedor=service.editar_proveedor(tipo_iden,numero_iden,nombre_proveedor,direccion,nombre_contacto,celular_contacto,actividad_economica)
+    return render_template('actualizarproveedor.html',aviso=aviso,proveedor=proveedor)
+
+@app.route('/eliminar_proveedor',methods=['POST'])
+def eliminar_proveedor():
+    proveedor=request.form['numero_identificacion']
+    service.eliminar_proveedor(proveedor)
+    proveedores=service.obtener_proveedores()
+    return render_template('proveedores.html',proveedores=proveedores)
+
 
     
 

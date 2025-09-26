@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Editar Proveedores</h1><br>
+        {% if aviso %}
+                <p style="color:red;">{{ aviso }}</p>
+        {% endif %}
+        <form action="/editar_proveedor" method="POST">
+            <label for="tipo_identificacion" class="proveedor">Tipo de Identificacion</label><br>
+            <select name="tipo_identificacion" id="tipo_identificacion">
+                <option value="Cedula" {%if proveedor.tipo_identificacion == "cedula"%} selected{%endif%}>cedula</option>
+                <option value="NIT" {%if proveedor.tipo_identificacion == "NIT"%} selected{%endif%}>NIT</option>
+                <option value="Cedula Extranjeria" {%if proveedor.tipo_identificacion == "Cedula Extranjeria"%} selected{%endif%}> Cedula Extranjeria</option>
+                <option value="NIT Extranjeria" {%if proveedor.tipo_identificacion == "Cedula Extranjeria"%} selected{%endif%}>NIT Extranjeria</option>
+            </select><br>
+            <label for="nombre_proveedor" class="proveedor">Nombre del Proveedor</label><br>
+            <input type="text" name="nombre_proveedor" id="nombre_proveedor" value="{{proveedor.nombre_proveedor}}" class="inputs" required><br>
+            <label for="direccion" class="proveedor">Direccion</label><br>
+            <input type="text" name="direccion" id="direccion" value="{{proveedor.direccion}}" class="inputs" required><br>
+            <label for="nombre_contacto" class="proveedor">Nombre del Contacto</label><br>
+            <input type="text" name="nombre_contacto" id="nombre_contacto" value="{{proveedor.nombre_contacto}}" class="inputs" required><br>
+            <label for="celular_contacto" class="proveedor">Celular del Contacto</label><br>
+            <input type="text" name="celular_contacto" id="celular_contacto" value="{{proveedor.celular_contacto}}" class="inputs" required><br>
+            <label for="actividad_economica" class="proveedor">Actividad Economica</label><br>
+            <input type="number" name="actividad_economica" id="actividad_economica" value="{{proveedor.actividad_economica}}" class="inputs" required min="1000" max="9999"><br>
+            <button type="submit" class="botones" name="numero_identificacion" value="{{proveedor.numero_identificacion}}">Editar</button>
+        </form>
+        <a href="{{ url_for('proveedores') }}"><button>atras</button></a>
+    </div>
+</body>
+</html>

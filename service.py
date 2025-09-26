@@ -60,3 +60,35 @@ def guardar_proveedor(tipo_doc,numero_doc,nombre_proveedor,direccion,nombre_cont
         return "Provedor creado exitosamente"
     except Exception as e:
         return "error"
+    
+def obtener_proveedores():
+    proveedores=Proveedor.query.all()
+    return proveedores
+
+def obtener_editar_proveedor(numero_identificacion):
+    proveedor=Proveedor.query.filter_by(numero_identificacion=numero_identificacion).first()
+    return proveedor
+
+def editar_proveedor(tipo_iden,numero_iden,nombre_proveedor,direccion,nombre_contacto,celular_contacto,actividad_economica):
+    proveedor_editar=Proveedor.query.filter_by(numero_identificacion=numero_iden).first()
+    
+    try:
+        if len(celular_contacto) > 20:
+            return "error: el número de celular no puede tener más de 20 caracteres", proveedor_editar
+        else:
+            proveedor_editar.tipo_identificacion=tipo_iden
+            proveedor_editar.nombre_proveedor=nombre_proveedor
+            proveedor_editar.direccion=direccion
+            proveedor_editar.nombre_contacto=nombre_contacto
+            proveedor_editar.celular_contacto=celular_contacto
+            proveedor_editar.actividad_economica=actividad_economica
+            db.session.commit()
+            return "se edito exitosamente", proveedor_editar 
+    except Exception as e:
+        db.session.rollback()
+        return "error", proveedor_editar
+    
+def eliminar_proveedor(numero_identificacion):
+    proveedor=Proveedor.query.filter_by(numero_identificacion=numero_identificacion).first()
+    db.session.delete(proveedor)
+    db.session.commit()
