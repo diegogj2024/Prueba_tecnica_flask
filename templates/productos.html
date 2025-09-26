@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo del Producto</th>
+                    <th>Nombre del Producto</th>
+                    <th>Descripcion</th>
+                    <th>Estado</th>
+                    <th>laboratorio</th>
+                    <th>Fecha Registro</th>
+                    <th><a href="{{ url_for('new_product') }}"><button id="añadir">➕​ Añadir Producto</button></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for producto in productos%}
+                <tr>
+                    <td>{{producto.codigo}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.descripcion}}</td>
+                    <td>{% if producto.estado %}
+                        Activo
+                        {%else%}
+                        Inactivo
+                        {% endif %}</td>
+                    <td>{{producto.nombre_laboratorio}}</td>
+                    <td>{{producto.fecha_registro}}</td>
+                    <td>
+                        <form action="/formulario_editarproducto" method="POST">
+                            <button class="boton_editar" type="submit" value="{{producto.codigo}}" name="codigo_producto">editar ✏️​</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/eliminar" method="POST">
+                            <button class="boton_eliminar" type="submit" value="{{producto.codigo}}" name="codigo_producto" >eliminar 🗑️​</button>
+                        </form>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

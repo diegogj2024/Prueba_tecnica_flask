@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">bienvenido al Sistema de farmacia</h1><br>
+        <a href="{{ url_for('productos') }}"><button class="botones">Productos</button></a><br>
+         <a href="{{ url_for('crear_proovedor') }}"><button class="botones">Proveedores</button></a><br>
+        <button class="botones">Recepcion de Productos</button><br>
+    </div>
+</body>
+</html>

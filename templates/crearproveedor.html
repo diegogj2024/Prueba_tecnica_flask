@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Registrar Proveedor</h1><br>
+        {% if aviso %}
+                <p style="color:red;">{{ aviso }}</p>
+        {% endif %}
+        <form action="guardar_proveedor" method="POST">
+            <label for="tipo_doc" class="proveedor">Tipo de documento</label><br>
+            <select name="tipo_doc" id="tipo_doc">
+                <option value="Cedula">Cédula</option>
+                <option value="NIT">NIT</option>
+                <option value="Cedula_Extranjeria">Cédula de Extranjería</option>
+                <option value="NIT_Extranjeria">NIT de Extranjería</option>
+            </select><br>
+            <label for="numero_doc" class="proveedor">Ingrese el numero del documento</label><br>
+            <input type="text" name="numero_doc" id="numero_doc" placeholder="Ingrese el numero de documento" required class="inputs"><br>
+            <label for="nombre_proveedor" class="proveedor">Ingrese el nombre del proveedor</label><br>
+            <input type="text" name="nombre_proveedor" id="nombre_proveedor" required placeholder="ingrese el nombre del proveedor" class="inputs"><br>
+            <label for="direccion" class="proveedor">Ingrese la direccion</label><br>
+            <input type="text" name="direccion" id="direccion" placeholder="ingrese la direccion" required class="inputs"><br>
+            <label for="nombre_contacto" class="proveedor">Ingrese el nombre del contacto</label><br>
+            <input type="text" name="nombre_contacto" id="nombre_contacto" placeholder="Ingrese el nombre del contacto" required class="inputs"><br>
+            <label for="celular_contacto" class="proveedor">Ingrese el numero de Celular del contacto</label><br>
+            <input type="text" name="celular_contacto" class="inputs"><br>
+            <label for="actividad_economina" class="proveedor">Ingrese la actividad economica</label><br>
+            <input type="number" name="actividad_economina" id="actividad_economina" min="1000" max="9999" class="inputs"><br>
+            <button type="submit">Guardar</button>
+        </form>
+        <a href="{{ url_for('productos') }}"><button>atras</button></a>
+        
+    </div>
+</body>
+</html>
