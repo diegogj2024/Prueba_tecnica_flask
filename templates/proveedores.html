@@ -18,8 +18,8 @@
                     <th>Nombre del Contacto</th>
                     <th>Celular del Contacto</th>
                     <th>Actividad Economica</th>
-                    <th><a href="{{ url_for('crear_proovedor') }}"><button id="añadir">➕​ Añadir Proveedor</button></a></th>
-                    <th><a href="{{ url_for('index') }}"><button id="añadir">🔙​ atras</button></a></th>
+                    <th><a href="{{ url_for('crear_proovedor') }}"><button class="buttons">➕​ Añadir Proveedor</button></a></th>
+                    <th><a href="{{ url_for('index') }}"><button class="buttons">🔙​ Atras</button></a></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,12 +34,12 @@
                     <td>{{proveedor.actividad_economica}}</td>
                     <td>
                         <form action="/formulario_editar_proveedor" method="POST">
-                            <button class="boton_editar" type="submit" value="{{proveedor.numero_identificacion}}" name="numero_identificacion">editar ✏️​</button>
+                            <button class="boton_editar" type="submit" value="{{proveedor.numero_identificacion}}" name="numero_identificacion">Editar ✏️​</button>
                         </form>
                     </td>
                     <td>
                         <form action="/eliminar_proveedor" method="POST">
-                            <button class="boton_eliminar" type="submit" value="{{proveedor.numero_identificacion}}" name="numero_identificacion" >eliminar 🗑️​</button>
+                            <button class="boton_eliminar" type="submit" value="{{proveedor.numero_identificacion}}" name="numero_identificacion" >Eliminar 🗑️​</button>
                         </form>
                     </td>
                 </tr>

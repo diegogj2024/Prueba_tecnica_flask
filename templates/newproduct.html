@@ -13,15 +13,15 @@
                 <p style="color:red;">{{ aviso }}</p>
         {% endif %}
         <form action="/guardar_producto" method="POST">
-            <label for="nombre_p" class="productos">Ingresa el nombre del Producto</label><br>
-            <input type="text" name="nombre_p" id="nombre_p" placeholder="Ingresa el nombre del Producto" required class="inputs"><br>
-            <label for="descripcion_p" class="productos">Ingresa la descripcion del Producto</label><br>
-            <input type="text" name="descripcion_p" id="descripcion_p" placeholder="Ingresa la descripcion del Producto" required class="inputs"><br>
-            <label for="nombre_lab" class="productos">Ingresa el nombre del laboratorio</label><br>
-            <input type="text" name="nombre_lab" id="nombre_lab" placeholder="Ingresa el nombre del laboratorio" class="inputs"><br>
-            <button type="submit">Guardar</button>
+            <label for="nombre_p" >Ingresa el nombre del Producto</label><br>
+            <input type="text" name="nombre_p" id="nombre_p" required ><br>
+            <label for="descripcion_p" >Ingresa la descripcion del Producto</label><br>
+            <input type="text" name="descripcion_p" id="descripcion_p" required ><br>
+            <label for="nombre_lab" >Ingresa el nombre del laboratorio</label><br>
+            <input type="text" name="nombre_lab" id="nombre_lab" ><br>
+            <button type="submit" class="botones">Guardar</button>
         </form>
-        <a href="{{ url_for('productos') }}"><button>atras</button></a>
+        <a href="{{ url_for('productos') }}"><button class="botones">atras</button></a>
         
     </div>
 </body>

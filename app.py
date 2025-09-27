@@ -106,9 +106,38 @@ def eliminar_proveedor():
     proveedores=service.obtener_proveedores()
     return render_template('proveedores.html',proveedores=proveedores)
 
+@app.route('/recepcionproductos')
+def recepcionproductos():
+    recepciones=service.obtener_recepcion()
+    return render_template('recepcionproductos.html',recepciones=recepciones)
 
-    
+@app.route('/formulario_recepcion_productos')
+def formulario_recepcion_productos():
+    productos=service.obtener_productos()
+    proveedores=service.obtener_proveedores()
+    return render_template('crearrecepcionproductos.html',productos=productos,proveedores=proveedores)
 
+@app.route('/guardar_recepcion_producto', methods=['POST'])
+def guardar_recepcion_producto():
+    codigo_f=request.form['codigo_factura']
+    producto=request.form['producto']
+    proveedor=request.form['proveedor']
+    cantidad=request.form['cantidad']
+    lote=request.form['lote']
+    invima=request.form['invima']
+    fecha_vencimiento=request.form['fecha_vencimiento']
+    estado_producto=request.form['estado_producto']
+    aviso=service.guardar_recepcion(codigo_f,producto,proveedor,cantidad,lote,invima,fecha_vencimiento,estado_producto)
+    productos=service.obtener_productos()
+    proveedores=service.obtener_proveedores()
+    return render_template('crearrecepcionproductos.html',aviso=aviso,productos=productos,proveedores=proveedores)
+
+@app.route('/eliminar_recepcion', methods=['POST'])
+def eliminar_recepcion():
+    codigo=request.form['codigo_factura']
+    service.eliminar_recepcion(codigo)
+    recepciones=service.obtener_recepcion()
+    return render_template('recepcionproductos.html',recepciones=recepciones)
 
 if __name__ == '__main__':
     app.run(debug=True)

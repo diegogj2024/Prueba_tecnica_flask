@@ -10,7 +10,7 @@ class Proveedor(db.Model):
     nombre_proveedor = db.Column(db.String(100), nullable=False)
     direccion = db.Column(db.String(200), nullable=True)
     nombre_contacto = db.Column(db.String(100), nullable=False)
-    celular_contacto = db.Column(db.String(20), nullable=True)
+    celular_contacto = db.Column(db.BigInteger, nullable=True)
     actividad_economica = db.Column(db.Integer, nullable=True)
     productos = db.relationship('Producto', secondary='producto_proveedor', back_populates='proveedores')
 
@@ -34,7 +34,7 @@ producto_proveedor = db.Table(
 class RecepcionProductos(db.Model):
     __tablename__ = 'recepcionproductos'
     numero_factura = db.Column(db.String(50), primary_key=True)
-    fecha_recepcion = db.Column(db.DateTime, default=datetime.utcnow)
+    fecha_recepcion = db.Column(db.Date, default=datetime.utcnow)
     producto_codigo = db.Column(db.Integer, db.ForeignKey('producto.codigo'), nullable=False)
     proveedor_id = db.Column(db.String(20), db.ForeignKey('proveedor.numero_identificacion'), nullable=False)
     cantidad = db.Column(db.Integer, nullable=False)

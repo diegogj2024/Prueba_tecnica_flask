@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="titulo">Editar Proveedores</h1><br>
+        <h1 class="titulo">Editar Recepcion</h1><br>
         {% if aviso %}
                 <p style="color:red;">{{ aviso }}</p>
         {% endif %}
@@ -20,7 +20,7 @@
                 <option value="Cedula Extranjeria" {%if proveedor.tipo_identificacion == "Cedula Extranjeria"%} selected{%endif%}> Cedula Extranjeria</option>
                 <option value="NIT Extranjeria" {%if proveedor.tipo_identificacion == "Cedula Extranjeria"%} selected{%endif%}>NIT Extranjeria</option>
             </select><br>
-            <label for="nombre_proveedor">Nombre del Proveedor</label><br>
+            <label for="nombre_proveedor" >Nombre del Proveedor</label><br>
             <input type="text" name="nombre_proveedor" id="nombre_proveedor" value="{{proveedor.nombre_proveedor}}" required><br>
             <label for="direccion" >Direccion</label><br>
             <input type="text" name="direccion" id="direccion" value="{{proveedor.direccion}}" required><br>

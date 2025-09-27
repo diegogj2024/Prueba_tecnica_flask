@@ -13,7 +13,7 @@
                 <p style="color:red;">{{ aviso }}</p>
         {% endif %}
         <form action="/editar_producto" method="POST">
-            <label for="nombre" class="productos">Nombre del Producto</label><br>
+            <label for="nombre">Nombre del Producto</label><br>
             <input type="text" name="nombre_p" id="nombre" value="{{producto_editar.nombre}}" required><br>
             <label for="descripcion">Descripcion del Producto</label><br>
             <input type="text" name="descripcion_p" id="descripcion" value="{{producto_editar.descripcion}}" required><br>
@@ -24,9 +24,9 @@
             <input type="text" name="nombre_lab" id="laboratorio" value="{{producto_editar.nombre_laboratorio}}" required><br>
             <label for="fecha">Fecha de Registro</label><br>
             <input type="date" name="fecha_registro" id="fecha" value="{{producto_editar.fecha_registro}}" required><br>
-            <button type="submit" name="codigo_producto" value="{{producto_editar.codigo}}">Editar</button>
+            <button type="submit" name="codigo_producto" value="{{producto_editar.codigo}}" class="botones">Editar</button>
         </form>
-        <a href="{{ url_for('productos') }}"><button>atras</button></a>
+        <a href="{{ url_for('productos') }}"><button class="botones">atras</button></a>
     </div>
 </body>
 </html>

@@ -17,8 +17,8 @@
                     <th>Estado</th>
                     <th>laboratorio</th>
                     <th>Fecha Registro</th>
-                    <th><a href="{{ url_for('new_product') }}"><button id="añadir">➕​ Añadir Producto</button></a></th>
-                    <th><a href="{{ url_for('index') }}"><button id="añadir">🔙​ atras</button></a></th>
+                    <th><a href="{{ url_for('new_product') }}"><button class="buttons">➕​ Añadir Producto</button></a></th>
+                    <th><a href="{{ url_for('index') }}"><button class="buttons">🔙​ atras</button></a></th>
                 </tr>
             </thead>
             <tbody>
@@ -36,12 +36,12 @@
                     <td>{{producto.fecha_registro}}</td>
                     <td>
                         <form action="/formulario_editarproducto" method="POST">
-                            <button class="boton_editar" type="submit" value="{{producto.codigo}}" name="codigo_producto">editar ✏️​</button>
+                            <button class="boton_editar" type="submit" value="{{producto.codigo}}" name="codigo_producto">Editar ✏️​</button>
                         </form>
                     </td>
                     <td>
                         <form action="/eliminar" method="POST">
-                            <button class="boton_eliminar" type="submit" value="{{producto.codigo}}" name="codigo_producto" >eliminar 🗑️​</button>
+                            <button class="boton_eliminar" type="submit" value="{{producto.codigo}}" name="codigo_producto" >Eliminar 🗑️​</button>
                         </form>
                     </td>
                 </tr>
