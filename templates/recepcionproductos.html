@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="container">
+        <h1>Recepcion de Productos</h1>
         <table>
             <thead>
                 <tr>
@@ -37,7 +38,7 @@
                     <td>{{recepcion.fecha_vencimiento}}</td>
                     <td>{{recepcion.estado_presentacion}}</td>
                     <td>
-                        <form action="/formulario_editar_proveedor" method="POST">
+                        <form action="/formulario_editar_recepcion" method="POST">
                             <button class="boton_editar" type="submit" value="{{recepcion.numero_factura}}" name="codigo_factura">Editar ✏️​</button>
                         </form>
                     </td>

@@ -10,7 +10,7 @@
     <div class="container">
         <h1 class="titulo">Registrar Proveedor</h1><br>
         {% if aviso %}
-                <p style="color:red;">{{ aviso }}</p>
+                <p style="color:rgb(0, 0, 0);">{{ aviso }}</p>
         {% endif %}
         <form action="guardar_proveedor" method="POST">
             <label for="tipo_doc" >Tipo de documento</label><br>
@@ -20,7 +20,7 @@
                 <option value="Cedula Extranjeria">Cédula de Extranjería</option>
                 <option value="NIT Extranjeria">NIT de Extranjería</option>
             </select><br>
-            <label for="numero_doc" >Ingrese el numero del documento</label><br>
+            <label for="numero_doc" >Ingrese el numero del documento o NIT</label><br>
             <input type="text" name="numero_doc" id="numero_doc" required ><br>
             <label for="nombre_proveedor" >Ingrese el nombre del proveedor</label><br>
             <input type="text" name="nombre_proveedor" id="nombre_proveedor" required ><br>
@@ -29,7 +29,7 @@
             <label for="nombre_contacto" >Ingrese el nombre del contacto</label><br>
             <input type="text" name="nombre_contacto" id="nombre_contacto"  required ><br>
             <label for="celular_contacto" >Ingrese el numero de Celular del contacto</label><br>
-            <input type="number" name="celular_contacto"  min="1000000000" max="9999999999"><br>
+            <input type="number" name="celular_contacto"  min="3000000000" max="3999999999"><br>
             <label for="actividad_economica" >Ingrese la actividad economica</label><br>
             <input type="number" name="actividad_economica" id="actividad_economica" min="1000" max="9999" ><br>
             <button type="submit" class="botones">Guardar</button>

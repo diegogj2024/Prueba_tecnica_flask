@@ -10,29 +10,36 @@
     <div class="container">
         <h1 class="titulo">Editar Recepcion</h1><br>
         {% if aviso %}
-                <p style="color:red;">{{ aviso }}</p>
+                <p style="color:rgb(0, 0, 0);">{{ aviso }}</p>
         {% endif %}
-        <form action="/editar_proveedor" method="POST">
-            <label for="tipo_identificacion" >Tipo de Identificacion</label><br>
-            <select name="tipo_identificacion" id="tipo_identificacion">
-                <option value="Cedula" {%if proveedor.tipo_identificacion == "cedula"%} selected{%endif%}>cedula</option>
-                <option value="NIT" {%if proveedor.tipo_identificacion == "NIT"%} selected{%endif%}>NIT</option>
-                <option value="Cedula Extranjeria" {%if proveedor.tipo_identificacion == "Cedula Extranjeria"%} selected{%endif%}> Cedula Extranjeria</option>
-                <option value="NIT Extranjeria" {%if proveedor.tipo_identificacion == "Cedula Extranjeria"%} selected{%endif%}>NIT Extranjeria</option>
+        <form action="/editar_recepcion" method="POST">
+            <label for="producto">Seleccione el Producto</label><br>
+            <select name="producto" id="producto">
+            {%for producto in productos%}
+               <option value="{{producto.codigo}}" {%if recepcion.producto.codigo == producto.codigo %} selected{%endif%}>{{producto.nombre}}</option>
+            {%endfor%}
             </select><br>
-            <label for="nombre_proveedor" >Nombre del Proveedor</label><br>
-            <input type="text" name="nombre_proveedor" id="nombre_proveedor" value="{{proveedor.nombre_proveedor}}" required><br>
-            <label for="direccion" >Direccion</label><br>
-            <input type="text" name="direccion" id="direccion" value="{{proveedor.direccion}}" required><br>
-            <label for="nombre_contacto" >Nombre del Contacto</label><br>
-            <input type="text" name="nombre_contacto" id="nombre_contacto" value="{{proveedor.nombre_contacto}}" required><br>
-            <label for="celular_contacto" >Celular del Contacto</label><br>
-            <input type="number" name="celular_contacto" id="celular_contacto" value="{{proveedor.celular_contacto}}" required min="1000000000" max="9999999999"><br>
-            <label for="actividad_economica" >Actividad Economica</label><br>
-            <input type="number" name="actividad_economica" id="actividad_economica" value="{{proveedor.actividad_economica}}" required min="1000" max="9999"><br>
-            <button type="submit" class="botones" name="numero_identificacion" value="{{proveedor.numero_identificacion}}">Editar</button>
+            <label for="proveedor">Seleccione el Proveedor</label><br>  
+            <select name="proveedor" id="proveedor">
+            {%for proveedor in proveedores%}
+               <option value="{{proveedor.numero_identificacion}}" {%if recepcion.proveedor.numero_identificacion == proveedor.numero_identificacion %} selected{%endif%} >{{proveedor.nombre_proveedor}}</option>
+            {%endfor%}
+            </select><br>
+            <label for="cantidad">Ingrese la cantidad del producto</label><br>
+            <input type="number" name="cantidad" id="cantidad" required min="1" max="99999" value="{{recepcion.cantidad}}"><br>
+            <label for="lote">Ingrese el Lote</label><br>
+            <input type="text" name="lote" id="lote" required value="{{recepcion.lote}}"><br>
+            <label for="invima">Ingrese el registro invima</label><br>
+            <input type="text" name="invima" id="invima" required value="{{recepcion.registro_invima}}"><br>
+            <label for="fecha_recepcion">Fecha de Recepcion</label>
+            <input type="date" name="fecha_recepcion" id="fecha_recepcion" required value="{{recepcion.fecha_recepcion}}"><br>
+            <label for="fecha_vencimiento">Seleccione la fecha de vencimiento</label><br>
+            <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" required value="{{recepcion.fecha_vencimiento}}"><br>
+            <label for="estado_producto">Descripcion del estado del producto</label><br>
+            <input type="estado_producto" name="estado_producto" id="estado_producto" required value="{{recepcion.estado_presentacion}}"><br>
+            <button type="submit" class="botones" name="codigo_factura" value="{{recepcion.numero_factura}}">Guardar</button>
         </form>
-        <a href="{{ url_for('proveedores') }}"><button class="botones">atras</button></a>
+        <a href="{{ url_for('recepcionproductos') }}"><button class="botones">atras</button></a>
     </div>
 </body>
 </html>

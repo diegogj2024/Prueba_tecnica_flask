@@ -147,3 +147,30 @@ def eliminar_recepcion(codigo):
     recepcion=RecepcionProductos.query.filter_by(numero_factura=codigo).first()
     db.session.delete(recepcion)
     db.session.commit()
+
+def obtener_recepcion_editar(codigo):
+    recepcion=RecepcionProductos.query.filter_by(numero_factura=codigo).first()
+    return recepcion
+
+def editar_recepcion(codigo_f,producto,proveedor,cantidad,lote,invima,fecha_vencimiento,estado_producto,fecha_recepcion):
+    recepcion_editar=RecepcionProductos.query.filter_by(numero_factura=codigo_f).first()
+    fecha_obj = datetime.strptime(fecha_vencimiento, '%Y-%m-%d').date()
+    fecha_obj2 = datetime.strptime(fecha_recepcion, '%Y-%m-%d').date()
+    try:
+        if len(lote)>50:
+            return "error: el lote no puede tener mas de 50 caracteres",recepcion_editar
+        elif len(invima)>50:
+            return "error: el registro invima no puede tener mas de 50 caracteres",recepcion_editar
+        else:
+            recepcion_editar.producto_codigo=producto,
+            recepcion_editar.proveedor_id=proveedor,
+            recepcion_editar.cantidad=cantidad,
+            recepcion_editar.lote=lote,
+            recepcion_editar.fecha_recepcion=fecha_recepcion,
+            recepcion_editar.registro_invima=invima,
+            recepcion_editar.fecha_vencimiento=fecha_obj,
+            recepcion_editar.estado_presentacion=estado_producto
+            db.session.commit()
+            return "recepcion editado exitosamente",recepcion_editar
+    except Exception as e:
+        return "ya existe una recepcion con este mismo codigo de factura",recepcion_editar

@@ -139,5 +139,29 @@ def eliminar_recepcion():
     recepciones=service.obtener_recepcion()
     return render_template('recepcionproductos.html',recepciones=recepciones)
 
+@app.route('/formulario_editar_recepcion', methods=['POST'])
+def formulario_editar_recepcion():
+    codigo=request.form['codigo_factura']
+    recepcion=service.obtener_recepcion_editar(codigo)
+    proveedores=service.obtener_proveedores()
+    productos=service.obtener_productos()
+    return render_template('actualizarrecepcion.html',recepcion=recepcion,proveedores=proveedores,productos=productos)
+
+@app.route('/editar_recepcion', methods=['POST'])
+def editar_recepcion():
+    codigo_f=request.form['codigo_factura']
+    producto=request.form['producto']
+    proveedor=request.form['proveedor']
+    cantidad=request.form['cantidad']
+    lote=request.form['lote']
+    invima=request.form['invima']
+    fecha_recepcion=request.form['fecha_recepcion']
+    fecha_vencimiento=request.form['fecha_vencimiento']
+    estado_producto=request.form['estado_producto']
+    aviso,recepcion=service.editar_recepcion(codigo_f,producto,proveedor,cantidad,lote,invima,fecha_vencimiento,estado_producto,fecha_recepcion)
+    proveedores=service.obtener_proveedores()
+    productos=service.obtener_productos()
+    return render_template('actualizarrecepcion.html',aviso=aviso,recepcion=recepcion,proveedores=proveedores,productos=productos)
+
 if __name__ == '__main__':
     app.run(debug=True)
