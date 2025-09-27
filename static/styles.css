@@ -31,16 +31,6 @@ body{
     background-color:rgb(81, 255, 145);
 }
 
-@keyframes cambiarColor {
-    0% { color: rgb(0, 0, 0); }
-    50% { color:rgb(1, 255, 111); }
-    100% { color:  rgb(21, 48, 219); }
-}
-
-.titulo {
-    animation: cambiarColor 2s infinite; 
-}
-
 
 label{
     margin: 2%;
