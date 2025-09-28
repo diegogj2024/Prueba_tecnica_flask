@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Registrar Productos</h1><br>
+        {% if aviso %}
+                <p style="color:rgb(0, 0, 0);">{{ aviso }}</p>
+        {% endif %}
+        <form action="/guardar_producto" method="POST">
+            <label for="nombre_p" >Ingresa el nombre del Producto</label><br>
+            <input type="text" name="nombre_p" id="nombre_p" required ><br>
+            <label for="descripcion_p" >Ingresa la descripcion del Producto</label><br>
+            <input type="text" name="descripcion_p" id="descripcion_p" required ><br>
+            <label for="nombre_lab" >Ingresa el nombre del laboratorio</label><br>
+            <input type="text" name="nombre_lab" id="nombre_lab" ><br>
+            <button type="submit" class="botones">Guardar</button>
+        </form>
+        <a href="{{ url_for('productos') }}"><button class="botones">atras</button></a>
+        
+    </div>
+</body>
+</html>

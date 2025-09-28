@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Recepcion de Productos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero de Factura</th>
+                    <th>Fecha de Recepcion</th>
+                    <th>Producto</th>
+                    <th>Proveedor</th>
+                    <th>Cantidad</th>
+                    <th>Lote</th>
+                    <th>Registro Invima</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Estado de Presentacion</th>
+                    <th><a href="{{ url_for('formulario_recepcion_productos') }}"><button class="buttons">➕​ Añadir Recepcion</button></a></th>
+                    <th><a href="{{ url_for('index') }}"><button class="buttons">🔙​ Atras</button></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for recepcion in recepciones%}
+                <tr>
+                    <td>{{recepcion.numero_factura}}</td>
+                    <td>{{recepcion.fecha_recepcion}}</td>
+                    <td>{{recepcion.producto.nombre}}</td>
+                    <td>{{recepcion.proveedor.nombre_proveedor}}</td>
+                    <td>{{recepcion.cantidad}}</td>
+                    <td>{{recepcion.lote}}</td>
+                    <td>{{recepcion.registro_invima}}</td>
+                    <td>{{recepcion.fecha_vencimiento}}</td>
+                    <td>{{recepcion.estado_presentacion}}</td>
+                    <td>
+                        <form action="/formulario_editar_recepcion" method="POST">
+                            <button class="boton_editar" type="submit" value="{{recepcion.numero_factura}}" name="codigo_factura">Editar ✏️​</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/eliminar_recepcion" method="POST">
+                            <button class="boton_eliminar" type="submit" value="{{recepcion.numero_factura}}" name="codigo_factura" >Eliminar 🗑️​</button>
+                        </form>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

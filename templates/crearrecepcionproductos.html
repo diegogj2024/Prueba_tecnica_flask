@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Registrar Recepcion</h1><br>
+        {% if aviso %}
+                <p style="color:rgb(0, 0, 0);">{{ aviso }}</p>
+        {% endif %}
+        <form action="/guardar_recepcion_producto" method="POST">
+            <label for="codigo_factura">codigo de factura</label><br>
+            <input type="text" name="codigo_factura" id="codigo_factura" required><br>
+            <label for="producto">Seleccione el Producto</label><br>
+            <select name="producto" id="producto">
+            {%for producto in productos%}
+               <option value="{{producto.codigo}}">{{producto.nombre}}</option>
+            {%endfor%}
+            </select><br>
+            <label for="proveedor">Seleccione el Proveedor</label><br>
+            <select name="proveedor" id="proveedor">
+            {%for proveedor in proveedores%}
+               <option value="{{proveedor.numero_identificacion}}">{{proveedor.nombre_proveedor}}</option>
+            {%endfor%}
+            </select><br>
+            <label for="cantidad">Ingrese la cantidad del producto</label><br>
+            <input type="number" name="cantidad" id="cantidad" required min="1" max="99999"><br>
+            <label for="lote">Ingrese el Lote</label><br>
+            <input type="text" name="lote" id="lote" required><br>
+            <label for="invima">Ingrese el registro invima</label><br>
+            <input type="text" name="invima" id="invima" required><br>
+            <label for="fecha_vencimiento">Seleccione la fecha de vencimiento</label><br>
+            <input type="date" name="fecha_vencimiento" id="fecha_vencimiento" required><br>
+            <label for="estado_producto">Descripcion del estado del producto</label><br>
+            <input type="estado_producto" name="estado_producto" id="estado_producto" required><br>
+            <button type="submit" class="botones">Guardar</button>
+        </form>
+        <a href="{{ url_for('recepcionproductos') }}"><button class="botones">atras</button></a>
+        
+    </div>
+</body>
+</html>

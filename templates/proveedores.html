@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Proveedores</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Identificacion</th>
+                    <th>Numero de Identificacion</th>
+                    <th>Nombre del Proveedor</th>
+                    <th>Direccion</th>
+                    <th>Nombre del Contacto</th>
+                    <th>Celular del Contacto</th>
+                    <th>Actividad Economica</th>
+                    <th><a href="{{ url_for('crear_proovedor') }}"><button class="buttons">➕​ Añadir Proveedor</button></a></th>
+                    <th><a href="{{ url_for('index') }}"><button class="buttons">🔙​ Atras</button></a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for proveedor in proveedores%}
+                <tr>
+                    <td>{{proveedor.tipo_identificacion}}</td>
+                    <td>{{proveedor.numero_identificacion}}</td>
+                    <td>{{proveedor.nombre_proveedor}}</td>
+                    <td>{{proveedor.direccion}}</td>
+                    <td>{{proveedor.nombre_contacto}}</td>
+                    <td>{{proveedor.celular_contacto}}</td>
+                    <td>{{proveedor.actividad_economica}}</td>
+                    <td>
+                        <form action="/formulario_editar_proveedor" method="POST">
+                            <button class="boton_editar" type="submit" value="{{proveedor.numero_identificacion}}" name="numero_identificacion">Editar ✏️​</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/eliminar_proveedor" method="POST">
+                            <button class="boton_eliminar" type="submit" value="{{proveedor.numero_identificacion}}" name="numero_identificacion" >Eliminar 🗑️​</button>
+                        </form>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

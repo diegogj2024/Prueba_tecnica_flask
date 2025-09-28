@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">editar Productos</h1><br>
+        {% if aviso %}
+                <p style="color:rgb(0, 0, 0);">{{ aviso }}</p>
+        {% endif %}
+        <form action="/editar_producto" method="POST">
+            <label for="nombre">Nombre del Producto</label><br>
+            <input type="text" name="nombre_p" id="nombre" value="{{producto_editar.nombre}}" required><br>
+            <label for="descripcion">Descripcion del Producto</label><br>
+            <input type="text" name="descripcion_p" id="descripcion" value="{{producto_editar.descripcion}}" required><br>
+            <label for="estado">Estado del Producto</label><br>
+            <input type="radio" name="estado_p" id="estado" value="True" {% if producto_editar.estado %}checked{% endif %}>Activo <br>
+            <input type="radio" name="estado_p" id="estado" value="False" {% if not producto_editar.estado %}checked{% endif %}>Inactivo <br>
+            <label for="laboratorio">Laboratorio</label><br>
+            <input type="text" name="nombre_lab" id="laboratorio" value="{{producto_editar.nombre_laboratorio}}" required><br>
+            <label for="fecha">Fecha de Registro</label><br>
+            <input type="date" name="fecha_registro" id="fecha" value="{{producto_editar.fecha_registro}}" required><br>
+            <button type="submit" name="codigo_producto" value="{{producto_editar.codigo}}" class="botones">Editar</button>
+        </form>
+        <a href="{{ url_for('productos') }}"><button class="botones">atras</button></a>
+    </div>
+</body>
+</html>
