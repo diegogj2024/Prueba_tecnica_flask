@@ -1,5 +1,5 @@
-from flask import Flask,request,render_template,redirect, url_for,session,flash
-from model import db,Producto
+from flask import Flask,request,render_template
+from model import db,Proveedor, Producto, RecepcionProductos
 import service
 
 app = Flask(__name__)
